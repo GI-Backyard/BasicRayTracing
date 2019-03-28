@@ -10,6 +10,7 @@
 		B2EFDD06224BCC29004DA25E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD05224BCC29004DA25E /* main.cpp */; };
 		B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD0D224BD0FE004DA25E /* vec3.cpp */; };
 		B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD10224BDE8C004DA25E /* ray.cpp */; };
+		B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD14224CC9D9004DA25E /* sphere.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,9 @@
 		B2EFDD0E224BD0FE004DA25E /* vec3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vec3.hpp; sourceTree = "<group>"; };
 		B2EFDD10224BDE8C004DA25E /* ray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		B2EFDD11224BDE8C004DA25E /* ray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
+		B2EFDD13224CC92C004DA25E /* hitable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hitable.h; sourceTree = "<group>"; };
+		B2EFDD14224CC9D9004DA25E /* sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
+		B2EFDD15224CC9D9004DA25E /* sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,9 @@
 				B2EFDD0E224BD0FE004DA25E /* vec3.hpp */,
 				B2EFDD10224BDE8C004DA25E /* ray.cpp */,
 				B2EFDD11224BDE8C004DA25E /* ray.hpp */,
+				B2EFDD13224CC92C004DA25E /* hitable.h */,
+				B2EFDD14224CC9D9004DA25E /* sphere.cpp */,
+				B2EFDD15224CC9D9004DA25E /* sphere.hpp */,
 			);
 			path = BasicRayTracing;
 			sourceTree = "<group>";
@@ -130,6 +137,7 @@
 			files = (
 				B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */,
 				B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */,
+				B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */,
 				B2EFDD06224BCC29004DA25E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
