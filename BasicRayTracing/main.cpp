@@ -2,7 +2,21 @@
 #include "vec3.hpp"
 #include "ray.hpp"
 
+bool hitSphere(const vec3& center, float radius, const ray& r) {
+    vec3 ac = r.origin() - center;
+    // a * t *t  + b * t + c = 0;
+    float a = dot(r.direction(), r.direction());
+    float b = 2 * dot(r.direction(), ac);
+    float c = dot(ac, ac) - radius * radius;
+    return b * b - 4 * a * c >= 0;
+}
+
 vec3 getColorForRay(const ray& r) {
+    vec3 sphereCenter(0, 0, -1);
+    float sphereRadius = 0.5;
+    if(hitSphere(sphereCenter, sphereRadius, r)) {
+        return vec3(1, 0, 0);
+    }
     vec3 unitDir = getUnitVector(r.direction());
     float t = 0.5 * (unitDir.y() + 1.0);
     vec3 white(1, 1, 1);
