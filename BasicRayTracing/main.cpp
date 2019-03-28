@@ -4,6 +4,7 @@
 #include "hitable.h"
 #include "sphere.hpp"
 #include "hitableList.hpp"
+#include "camera.hpp"
 
 vec3 getColorForRay(const ray& r, const hitable& world) {
     hitRecord rec;
@@ -23,16 +24,19 @@ int main(int argc, const char * argv[]) {
     int nx = 400;
     int ny = 200;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
-    vec3 lowLeftCorner( -2, -1, -1);
-    vec3 horizontal(4, 0, 0);
-    vec3 vertical(0, 2, 0);
-    vec3 origin(0, 0, 0);
+    
+    camera cam;
     for (int j = ny - 1 ; j >= 0; --j) {
         for(int i = 0; i < nx; ++i) {
-            float u = float(i) / float(nx);
-            float v = float(j) / float(ny);
-            ray r(origin, u * horizontal + v * vertical + lowLeftCorner);
-            vec3 color = getColorForRay(r, world);
+            vec3 color(0, 0, 0);
+            int numOfSamples = 16;
+            for(int s = 0; s < numOfSamples; ++s) {
+                float u = float(i + drand48()) / float(nx);
+                float v = float(j + drand48()) / float(ny);
+                ray r = cam.getRay(u, v);
+                color += getColorForRay(r, world);
+            }
+            color /= numOfSamples;
             int ir = int(color.r() * 255.99);
             int ig = int(color.g() * 255.99);
             int ib = int(color.b() * 255.99);
