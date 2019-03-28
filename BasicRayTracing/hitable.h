@@ -9,11 +9,12 @@
 #ifndef hitable_h
 #define hitable_h
 #include "ray.hpp"
-
+class material;
 struct hitRecord {
     float t;
     vec3 p;
     vec3 normal;
+    material* mtl;
 };
 
 class hitable {

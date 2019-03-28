@@ -7,7 +7,11 @@
 //
 
 #include "sphere.hpp"
+#include "material.h"
 
+sphere::~sphere() {
+    delete mtl;
+}
 bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
     vec3 ac = r.origin() - center;
     // a * t *t  + b * t + c = 0;
@@ -21,6 +25,7 @@ bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
         rec.t = t1;
         rec.p = r.getPoint(t1);
         rec.normal = getUnitVector(rec.p - center);
+        rec.mtl = this->mtl;
         return true;
     }
     float t2 = (- b + sqrt(discriminant))/ (2 * a);
@@ -28,6 +33,7 @@ bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
         rec.t = t2;
         rec.p = r.getPoint(t2);
         rec.normal = getUnitVector(rec.p - center);
+        rec.mtl = this->mtl;
         return true;
     }
     
