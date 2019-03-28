@@ -8,10 +8,6 @@
 
 #include "metal.hpp"
 
-vec3 reflect(const vec3& in, const vec3& normal) {
-    return in + 2 * dot((-normal), in) * normal;
-}
-
 bool metal::scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const {
     
     atten = albedo;
