@@ -8,7 +8,8 @@
 
 #ifndef hitable_h
 #define hitable_h
-class ray;
+#include "ray.hpp"
+
 struct hitRecord {
     float t;
     vec3 p;
@@ -17,7 +18,8 @@ struct hitRecord {
 
 class hitable {
 public:
-    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) = 0;
+    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) const = 0;
+    virtual ~hitable() {}
 };
 
 #endif /* hitable_h */

@@ -7,9 +7,8 @@
 //
 
 #include "sphere.hpp"
-#include "ray.hpp"
 
-bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) {
+bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
     vec3 ac = r.origin() - center;
     // a * t *t  + b * t + c = 0;
     float a = dot(r.direction(), r.direction());
@@ -20,14 +19,14 @@ bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) {
     float t1 = (- b - sqrt(discriminant))/ (2 * a);
     if(t1 >= tMin && t1 <= tMax) {
         rec.t = t1;
-        rec.p = r.origin() + t1 * r.direction();
+        rec.p = r.getPoint(t1);
         rec.normal = getUnitVector(rec.p - center);
         return true;
     }
     float t2 = (- b + sqrt(discriminant))/ (2 * a);
     if(t2 >= tMin && t2 <= tMax) {
         rec.t = t2;
-        rec.p = r.origin() + t2 * r.direction();
+        rec.p = r.getPoint(t2);
         rec.normal = getUnitVector(rec.p - center);
         return true;
     }

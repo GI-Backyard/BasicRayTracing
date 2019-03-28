@@ -11,6 +11,7 @@
 		B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD0D224BD0FE004DA25E /* vec3.cpp */; };
 		B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD10224BDE8C004DA25E /* ray.cpp */; };
 		B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD14224CC9D9004DA25E /* sphere.cpp */; };
+		B2EFDD19224CCDB3004DA25E /* hitableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD17224CCDB3004DA25E /* hitableList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		B2EFDD13224CC92C004DA25E /* hitable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hitable.h; sourceTree = "<group>"; };
 		B2EFDD14224CC9D9004DA25E /* sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
 		B2EFDD15224CC9D9004DA25E /* sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
+		B2EFDD17224CCDB3004DA25E /* hitableList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hitableList.cpp; sourceTree = "<group>"; };
+		B2EFDD18224CCDB3004DA25E /* hitableList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hitableList.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,8 @@
 				B2EFDD13224CC92C004DA25E /* hitable.h */,
 				B2EFDD14224CC9D9004DA25E /* sphere.cpp */,
 				B2EFDD15224CC9D9004DA25E /* sphere.hpp */,
+				B2EFDD17224CCDB3004DA25E /* hitableList.cpp */,
+				B2EFDD18224CCDB3004DA25E /* hitableList.hpp */,
 			);
 			path = BasicRayTracing;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 				B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */,
 				B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */,
 				B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */,
+				B2EFDD19224CCDB3004DA25E /* hitableList.cpp in Sources */,
 				B2EFDD06224BCC29004DA25E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,13 +12,14 @@
 #include "hitable.h"
 
 class sphere : public hitable {
+private:
     vec3 center;
     float radius;
 public:
     sphere() { center = vec3(0, 0, 0); radius = 1.0; }
     sphere(const vec3& c, float r) { center = c; radius = r; }
     
-    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) override;
+    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) const override;
     
 };
 
