@@ -2,26 +2,31 @@
 #include "vec3.hpp"
 #include "ray.hpp"
 
-bool hitSphere(const vec3& center, float radius, const ray& r) {
+float hitSphere(const vec3& center, float radius, const ray& r) {
     vec3 ac = r.origin() - center;
     // a * t *t  + b * t + c = 0;
     float a = dot(r.direction(), r.direction());
     float b = 2 * dot(r.direction(), ac);
     float c = dot(ac, ac) - radius * radius;
-    return b * b - 4 * a * c >= 0;
+    float discriminant = b * b - 4 * a * c;
+    if(discriminant < 0) return -1;
+    else return (- b - sqrt(discriminant))/ (2 * a);
 }
 
 vec3 getColorForRay(const ray& r) {
     vec3 sphereCenter(0, 0, -1);
     float sphereRadius = 0.5;
-    if(hitSphere(sphereCenter, sphereRadius, r)) {
-        return vec3(1, 0, 0);
+    float t = hitSphere(sphereCenter, sphereRadius, r);
+    if( t >= 0) {
+        vec3 ptoC = getUnitVector(r.origin() + t * r.direction() - sphereCenter);
+        ptoC = 0.5 * (vec3(1, 1, 1) + ptoC);
+        return ptoC;
     }
     vec3 unitDir = getUnitVector(r.direction());
-    float t = 0.5 * (unitDir.y() + 1.0);
+    float blend = 0.5 * (unitDir.y() + 1.0);
     vec3 white(1, 1, 1);
     vec3 blue(0.5, 0.7, 1.0);
-    return white * (1.0 - t) + blue * t;
+    return white * (1.0 - blend) + blue * blend;
 }
 int main(int argc, const char * argv[]) {
     int nx = 400;
