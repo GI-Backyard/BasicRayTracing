@@ -6,6 +6,7 @@
 #include "hitableList.hpp"
 #include "camera.hpp"
 #include "lambert.hpp"
+#include "metal.hpp"
 
 const int maxDepth = 10;
 const int numberOfSamples = 100;
@@ -28,8 +29,10 @@ vec3 getColorForRay(const ray& r, const hitable& world, int depth) {
 }
 int main(int argc, const char * argv[]) {
     hitableList world;
-    world.addHitable(new sphere(vec3(0, 0, -1), 0.5, new lambert(vec3(0.5, 0.8, 0.9))));
-    world.addHitable(new sphere(vec3(0, -100.5, -1), 100, new lambert(vec3(0.9, 0.5, 0.5))));
+    world.addHitable(new sphere(vec3(0, 0, -1), 0.5, new lambert(vec3(0.8, 0.3, 0.3))));
+    world.addHitable(new sphere(vec3(0, -100.5, -1), 100, new lambert(vec3(0.8, 0.8, 0.0))));
+    world.addHitable(new sphere(vec3(1, 0, -1), 0.5, new metal(vec3(0.8, 0.6, 0.2), 0.01)));
+    world.addHitable(new sphere(vec3(-1, 0, -1), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3)));
     int nx = 400;
     int ny = 200;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
