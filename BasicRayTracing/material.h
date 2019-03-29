@@ -18,7 +18,7 @@ public:
     
     static inline vec3 randomInUnitSphere();
     static inline vec3 reflect(const vec3& in, const vec3& normal);
-    static inline bool refact(const vec3& vIn, const vec3& n, float niOverNt, vec3& refracted);
+    static inline bool refract(const vec3& vIn, const vec3& n, float niOverNt, vec3& refracted);
     static inline float schlick(float cosine, float refIdx);
 };
 
@@ -35,17 +35,16 @@ inline vec3 material::reflect(const vec3& in, const vec3& normal) {
     return in + 2 * dot((-normal), in) * normal;
 }
 
-inline bool material::refact(const vec3& vIn, const vec3& n, float niOverNt, vec3& refracted) {
+inline bool material::refract(const vec3& vIn, const vec3& n, float niOverNt, vec3& refracted) {
     vec3 uv = getUnitVector(vIn);
-    float dt = dot(uv, -n);
-    float discriminant = 1 - niOverNt * niOverNt * (1 - dt * dt);
-    if(discriminant > 0) {
-        refracted = (-n) * sqrt(discriminant);
-        refracted += niOverNt * (uv - dt * (-n));
+    float dt = dot(uv, n);
+    float discriminant = 1.0 - niOverNt*niOverNt*(1-dt*dt);
+    if (discriminant > 0) {
+        refracted = niOverNt*(uv - n*dt) - n*sqrt(discriminant);
         return true;
-    } else {
-        return false;
     }
+    else
+        return false;
 }
 
 inline float material::schlick(float cosine, float refIdx) {

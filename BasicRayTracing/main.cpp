@@ -34,7 +34,8 @@ int main(int argc, const char * argv[]) {
     world.addHitable(new sphere(vec3(0, -100.5, -1), 100, new lambert(vec3(0.8, 0.8, 0.0))));
     world.addHitable(new sphere(vec3(1, 0, -1), 0.5, new metal(vec3(0.8, 0.6, 0.2), 0.01)));
     world.addHitable(new sphere(vec3(-1, 0, -1), 0.5, new dielectric(1.5)));
-    world.addHitable(new sphere(vec3(-1, 0, -1), -0.3, new dielectric(1.5)));
+    world.addHitable(new sphere(vec3(-1, 0, -1), -0.2, new dielectric(1.5)));
+    //world.addHitable(new sphere(vec3(-1, 0, -1), -0.3, new dielectric(1.01)));
     int nx = 400;
     int ny = 200;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";

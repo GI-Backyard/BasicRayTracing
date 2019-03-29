@@ -8,36 +8,35 @@
 
 #include "dielectric.hpp"
 
-bool dielectric::scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const {
-    vec3 outwardNormal;
-    vec3 reflected = reflect(rIn.direction(), rec.normal);
-    float niOverNt;
-    atten = vec3(1, 1, 1);
+bool dielectric::scatter(const ray& r_in, const hitRecord& rec, vec3& attenuation, ray& scattered) const {
+    vec3 outward_normal;
+    float ref_idx = refactIndex;
+    vec3 reflected = reflect(r_in.direction(), rec.normal);
+    float ni_over_nt;
+    attenuation = vec3(1.0, 1.0, 1.0);
     vec3 refracted;
     float reflect_prob;
     float cosine;
-    if(dot(rIn.direction(), rec.normal) > 0) {
-        outwardNormal = -rec.normal;
-        niOverNt = refactIndex;
-        cosine = refactIndex * dot(rIn.direction(), rec.normal) / rIn.direction().length();
-    } else {
-        outwardNormal = rec.normal;
-        niOverNt = 1 / refactIndex;
-        cosine = - dot(rIn.direction(), rec.normal) / rIn.direction().length();
+    if (dot(r_in.direction(), rec.normal) > 0) {
+        outward_normal = -rec.normal;
+        ni_over_nt = ref_idx;
+        //         cosine = ref_idx * dot(r_in.direction(), rec.normal) / r_in.direction().length();
+        cosine = dot(r_in.direction(), rec.normal) / r_in.direction().length();
+        cosine = sqrt(1 - ref_idx*ref_idx*(1-cosine*cosine));
     }
-    
-    if(refact(rIn.direction(), outwardNormal, niOverNt, refracted)) {
-        reflect_prob = schlick(cosine, refactIndex);
-    } else {
-        scatted = ray(rec.p, reflected);
+    else {
+        outward_normal = rec.normal;
+        ni_over_nt = 1.0 / ref_idx;
+        cosine = -dot(r_in.direction(), rec.normal) / r_in.direction().length();
+    }
+    if (refract(r_in.direction(), outward_normal, ni_over_nt, refracted))
+        reflect_prob = schlick(cosine, ref_idx);
+    else
         reflect_prob = 1.0;
-    }
-    
-    if(drand48() < reflect_prob) {
-        scatted = ray(rec.p, reflected);
-    } else {
-        scatted = ray(rec.p, refracted);
-    }
+    if (drand48() < reflect_prob)
+        scattered = ray(rec.p, reflected);
+    else
+        scattered = ray(rec.p, refracted);
     return true;
 }
 

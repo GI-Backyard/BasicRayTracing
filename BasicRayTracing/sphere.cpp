@@ -16,23 +16,23 @@ bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
     vec3 ac = r.origin() - center;
     // a * t *t  + b * t + c = 0;
     float a = dot(r.direction(), r.direction());
-    float b = 2 * dot(r.direction(), ac);
+    float b = dot(r.direction(), ac);
     float c = dot(ac, ac) - radius * radius;
-    float discriminant = b * b - 4 * a * c;
+    float discriminant = b * b - a * c;
     if(discriminant < 0) return false;
-    float t1 = (- b - sqrt(discriminant))/ (2 * a);
+    float t1 = (- b - sqrt(discriminant))/ a;
     if(t1 >= tMin && t1 <= tMax) {
         rec.t = t1;
         rec.p = r.getPoint(t1);
-        rec.normal = getUnitVector(rec.p - center);
+        rec.normal = (rec.p - center) / radius;
         rec.mtl = this->mtl;
         return true;
     }
-    float t2 = (- b + sqrt(discriminant))/ (2 * a);
+    float t2 = (- b + sqrt(discriminant))/ a;
     if(t2 >= tMin && t2 <= tMax) {
         rec.t = t2;
         rec.p = r.getPoint(t2);
-        rec.normal = getUnitVector(rec.p - center);
+        rec.normal = (rec.p - center) / radius;
         rec.mtl = this->mtl;
         return true;
     }
