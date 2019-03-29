@@ -17,7 +17,7 @@ bool lambert::scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& sc
     
     atten = albedo;
     vec3 ori = rec.p;
-    vec3 dir = rec.normal + randomInUnitSphere() - rec.p;
+    vec3 dir = rec.normal + randomInUnitSphere();
     scatted = ray(ori, dir);
     return true;
 }
