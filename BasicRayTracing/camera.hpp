@@ -10,6 +10,7 @@
 #define camera_hpp
 
 #include "ray.hpp"
+#include <math.h>
 
 class camera {
 private:
@@ -19,11 +20,20 @@ private:
     vec3 vertical;
 public:
     
-    camera() {
-        lowLeftCorner = vec3( -2, -1, -1);
-        horizontal = vec3(4, 0, 0);
-        vertical = vec3(0, 2, 0);
-        origin = vec3(0, 0, 0);
+    camera(const vec3& eye, const vec3& focus, const vec3& up,float fov, float aspect) {
+        vec3 u, v, w;
+        w = getUnitVector(eye - focus);
+        u = getUnitVector(cross(up, w));
+        v = cross(w, u);
+        origin = eye;
+        float fovInRad = fov * M_PI / 180;
+        float halfHeight = tan(fovInRad / 2);
+        float halfWidth = halfHeight * aspect;
+        
+        lowLeftCorner = origin - halfWidth * u - halfHeight * v - w;
+        horizontal = 2 * halfWidth * u;
+        vertical = 2 * halfHeight * v;
+        
     }
     
     ray getRay(float u, float v) {

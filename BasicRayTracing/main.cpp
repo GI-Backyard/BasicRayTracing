@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     int ny = 200;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
     
-    camera cam;
+    camera cam(vec3(-2, 2, 1), vec3(0, 0, -1), vec3(0, 1, 0), 90, float(nx)/ny);
     for (int j = ny - 1 ; j >= 0; --j) {
         for(int i = 0; i < nx; ++i) {
             vec3 color(0, 0, 0);
