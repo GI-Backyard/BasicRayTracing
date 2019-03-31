@@ -18,6 +18,7 @@
 		B2EFDD26224D282B004DA25E /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD24224D282B004DA25E /* dielectric.cpp */; };
 		B2EFDD452250CC53004DA25E /* movingSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD432250CC53004DA25E /* movingSphere.cpp */; };
 		B2EFDD482250EB40004DA25E /* aabb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD462250EB40004DA25E /* aabb.cpp */; };
+		B2EFDD4B2250F0F1004DA25E /* bvhNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD492250F0F1004DA25E /* bvhNode.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,8 @@
 		B2EFDD442250CC53004DA25E /* movingSphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movingSphere.hpp; sourceTree = "<group>"; };
 		B2EFDD462250EB40004DA25E /* aabb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aabb.cpp; sourceTree = "<group>"; };
 		B2EFDD472250EB40004DA25E /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
+		B2EFDD492250F0F1004DA25E /* bvhNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bvhNode.cpp; sourceTree = "<group>"; };
+		B2EFDD4A2250F0F1004DA25E /* bvhNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bvhNode.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 				B2EFDD442250CC53004DA25E /* movingSphere.hpp */,
 				B2EFDD462250EB40004DA25E /* aabb.cpp */,
 				B2EFDD472250EB40004DA25E /* aabb.hpp */,
+				B2EFDD492250F0F1004DA25E /* bvhNode.cpp */,
+				B2EFDD4A2250F0F1004DA25E /* bvhNode.hpp */,
 			);
 			path = BasicRayTracing;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				B2EFDD26224D282B004DA25E /* dielectric.cpp in Sources */,
 				B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */,
 				B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */,
+				B2EFDD4B2250F0F1004DA25E /* bvhNode.cpp in Sources */,
 				B2EFDD19224CCDB3004DA25E /* hitableList.cpp in Sources */,
 				B2EFDD452250CC53004DA25E /* movingSphere.cpp in Sources */,
 				B2EFDD23224D19FF004DA25E /* metal.cpp in Sources */,
