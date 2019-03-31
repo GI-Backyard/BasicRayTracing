@@ -18,6 +18,6 @@ bool Lambert::scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& sc
     atten = albedo;
     Vec3 ori = rec.p;
     Vec3 dir = rec.normal + randomInUnitSphere();
-    scatted = Ray(ori, dir);
+    scatted = Ray(ori, dir, rIn.time());
     return true;
 }

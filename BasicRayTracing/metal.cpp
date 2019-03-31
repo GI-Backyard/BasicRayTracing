@@ -13,7 +13,7 @@ bool Metal::scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scat
     atten = albedo;
     Vec3 ori = rec.p;
     Vec3 dir = reflect(rIn.direction(), rec.normal) + fuzzy * randomInUnitSphere();
-    scatted = Ray(ori, dir);
+    scatted = Ray(ori, dir, rIn.time());
     return dot(dir, rec.normal) > 0;
 }
 

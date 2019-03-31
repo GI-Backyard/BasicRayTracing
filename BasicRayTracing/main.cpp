@@ -3,6 +3,7 @@
 #include "ray.hpp"
 #include "hitable.h"
 #include "sphere.hpp"
+#include "movingSphere.hpp"
 #include "hitableList.hpp"
 #include "camera.hpp"
 #include "lambert.hpp"
@@ -54,7 +55,11 @@ Hitable* random_scene() {
         }
     }
     
-    list[i++] = new Sphere(Vec3(0, 1, 0), 1.0, new Dielectric(1.5));
+//    list[i++] = new Sphere(Vec3(0, 1, 0), 1.0, new Dielectric(1.5));
+//    list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambert(Vec3(0.4, 0.2, 0.1)));
+//    list[i++] = new Sphere(Vec3(4, 1, 0), 1.0, new Metal(Vec3(0.7, 0.6, 0.5), 0.0));
+
+    list[i++] = new MovingSphere(Vec3(0, 1, 0), Vec3(0, 1.2, 0), 0.0, 1.0, 1.0, new Dielectric(1.5));
     list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambert(Vec3(0.4, 0.2, 0.1)));
     list[i++] = new Sphere(Vec3(4, 1, 0), 1.0, new Metal(Vec3(0.7, 0.6, 0.5), 0.0));
     
@@ -84,7 +89,7 @@ int main(int argc, const char * argv[]) {
     Vec3 focus(0, 0, 0);
     float focusDist = 10;
     float aperture = 0.0;
-    Camera cam(eye, focus, Vec3(0, 1, 0), 40, float(nx)/ny, aperture, focusDist, 0.0f, 1.0f);
+    Camera cam(eye, focus, Vec3(0, 1, 0), 40, float(nx)/ny, aperture, focusDist, 0.0f, 0.2f);
     for (int j = ny - 1 ; j >= 0; --j) {
         for(int i = 0; i < nx; ++i) {
             Vec3 color(0, 0, 0);
