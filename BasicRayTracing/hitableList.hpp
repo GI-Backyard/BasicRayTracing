@@ -22,6 +22,7 @@ public:
     void addHitable(Hitable* a);
     
     virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
+    virtual bool bounding_box(float t0, float t1, AABB& bb) const override;
 };
 
 #endif /* hitableList_hpp */

@@ -22,6 +22,7 @@ public:
     Sphere(const Vec3& c, float r, Material* mtl) { center = c; radius = r; this->mtl = mtl; }
     
     virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
+    virtual bool bounding_box(float t0, float t1, AABB& bb) const override;
     
 };
 

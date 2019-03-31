@@ -54,3 +54,9 @@ bool MovingSphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) con
     // exceeds tMin and tMax, return false
     return false;
 }
+
+bool MovingSphere::bounding_box(float t0, float t1, AABB& bb) const {
+    bb = AABB(this->center(t0) - Vec3(radius, radius, radius), this->center(t0) + Vec3(radius, radius, radius));
+    bb = AABB::surroundingBox(bb, AABB(this->center(t1) - Vec3(radius, radius, radius), this->center(t1) + Vec3(radius, radius, radius)));
+    return true;
+}

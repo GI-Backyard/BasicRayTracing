@@ -40,3 +40,8 @@ bool Sphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const {
     // exceeds tMin and tMax, return false
     return false;
 }
+
+bool Sphere::bounding_box(float t0, float t1, AABB& bb) const {
+    bb = AABB(this->center - Vec3(radius, radius, radius), this->center + Vec3(radius, radius, radius));
+    return true;
+}

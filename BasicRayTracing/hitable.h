@@ -9,6 +9,8 @@
 #ifndef hitable_h
 #define hitable_h
 #include "ray.hpp"
+#include "aabb.hpp"
+
 class Material;
 struct HitRecord {
     float t;
@@ -20,6 +22,7 @@ struct HitRecord {
 class Hitable {
 public:
     virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const = 0;
+    virtual bool bounding_box(float t0, float t1, AABB& bb) const = 0;
     virtual ~Hitable() {}
 };
 

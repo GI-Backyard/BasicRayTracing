@@ -17,6 +17,7 @@
 		B2EFDD23224D19FF004DA25E /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD21224D19FF004DA25E /* metal.cpp */; };
 		B2EFDD26224D282B004DA25E /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD24224D282B004DA25E /* dielectric.cpp */; };
 		B2EFDD452250CC53004DA25E /* movingSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD432250CC53004DA25E /* movingSphere.cpp */; };
+		B2EFDD482250EB40004DA25E /* aabb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD462250EB40004DA25E /* aabb.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +55,8 @@
 		B2EFDD25224D282B004DA25E /* dielectric.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dielectric.hpp; sourceTree = "<group>"; };
 		B2EFDD432250CC53004DA25E /* movingSphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movingSphere.cpp; sourceTree = "<group>"; };
 		B2EFDD442250CC53004DA25E /* movingSphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movingSphere.hpp; sourceTree = "<group>"; };
+		B2EFDD462250EB40004DA25E /* aabb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aabb.cpp; sourceTree = "<group>"; };
+		B2EFDD472250EB40004DA25E /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				B2EFDD25224D282B004DA25E /* dielectric.hpp */,
 				B2EFDD432250CC53004DA25E /* movingSphere.cpp */,
 				B2EFDD442250CC53004DA25E /* movingSphere.hpp */,
+				B2EFDD462250EB40004DA25E /* aabb.cpp */,
+				B2EFDD472250EB40004DA25E /* aabb.hpp */,
 			);
 			path = BasicRayTracing;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 			files = (
 				B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */,
 				B2EFDD20224D0591004DA25E /* lambert.cpp in Sources */,
+				B2EFDD482250EB40004DA25E /* aabb.cpp in Sources */,
 				B2EFDD26224D282B004DA25E /* dielectric.cpp in Sources */,
 				B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */,
 				B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */,

@@ -27,6 +27,7 @@ public:
     Vec3 center(float time) const;
     
     virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
+    virtual bool bounding_box(float t0, float t1, AABB& bb) const override;
 };
 
 #endif /* movingSphere_hpp */
