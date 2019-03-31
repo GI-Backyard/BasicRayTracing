@@ -9,6 +9,7 @@
 #include "lambert.hpp"
 #include "metal.hpp"
 #include "dielectric.hpp"
+#include "bvhNode.hpp"
 
 const int maxDepth = 10;
 const int numberOfSamples = 100;
@@ -35,7 +36,7 @@ Hitable* random_scene() {
     Hitable **list = new Hitable*[n+1];
     list[0] =  new Sphere(Vec3(0,-1000,0), 1000, new Lambert(Vec3(0.5, 0.5, 0.5)));
     int i = 1;
-    const int repeat = 2;
+    const int repeat = 11;
     for (int a = -repeat; a < repeat; a++) {
         for (int b = -repeat; b < repeat; b++) {
             float choose_mat = drand48();
@@ -62,12 +63,19 @@ Hitable* random_scene() {
     list[i++] = new MovingSphere(Vec3(0, 1, 0), Vec3(0, 1.2, 0), 0.0, 1.0, 1.0, new Dielectric(1.5));
     list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambert(Vec3(0.4, 0.2, 0.1)));
     list[i++] = new Sphere(Vec3(4, 1, 0), 1.0, new Metal(Vec3(0.7, 0.6, 0.5), 0.0));
-    
+
     HitableList* scene = new HitableList();
     for(int j = 0; j < i; ++j) {
         scene->addHitable(list[j]);
     }
+//#define USE_BVH
+#ifdef USE_BVH
+    std::vector<Hitable*> sceneNodes = scene->hitables;
+    BVHNode* node = new BVHNode(&sceneNodes[0], sceneNodes.size(), 0.0, 1.0f);
+    return node;
+#else
     return scene;
+#endif
     
 }
 Hitable* staticScene() {
@@ -82,8 +90,8 @@ Hitable* staticScene() {
 int main(int argc, const char * argv[]) {
 
     Hitable* pWorld = random_scene();
-    int nx = 300;
-    int ny = 200;
+    int nx = 600;
+    int ny = 400;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
     Vec3 eye(13, 2, 3);
     Vec3 focus(0, 0, 0);

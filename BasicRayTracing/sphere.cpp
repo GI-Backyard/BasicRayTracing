@@ -26,6 +26,7 @@ bool Sphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const {
         rec.p = r.getPoint(t1);
         rec.normal = (rec.p - center) / radius;
         rec.mtl = this->mtl;
+        rec.obj = this;
         return true;
     }
     float t2 = (- b + sqrt(discriminant))/ a;
@@ -34,6 +35,7 @@ bool Sphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const {
         rec.p = r.getPoint(t2);
         rec.normal = (rec.p - center) / radius;
         rec.mtl = this->mtl;
+        rec.obj = this;
         return true;
     }
     

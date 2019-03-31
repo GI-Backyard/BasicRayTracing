@@ -12,7 +12,7 @@
 #include "hitable.h"
 
 class HitableList : public Hitable {
-private:
+public:
     std::vector<Hitable*> hitables;
     
 public:

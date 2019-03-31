@@ -12,11 +12,13 @@
 #include "aabb.hpp"
 
 class Material;
+class Hitable;
 struct HitRecord {
     float t;
     Vec3 p;
     Vec3 normal;
     Material* mtl;
+    const Hitable* obj;
 };
 
 class Hitable {
