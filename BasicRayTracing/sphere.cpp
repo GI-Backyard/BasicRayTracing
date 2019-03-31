@@ -9,11 +9,11 @@
 #include "sphere.hpp"
 #include "material.h"
 
-sphere::~sphere() {
+Sphere::~Sphere() {
     delete mtl;
 }
-bool sphere::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
-    vec3 ac = r.origin() - center;
+bool Sphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const {
+    Vec3 ac = r.origin() - center;
     // a * t *t  + b * t + c = 0;
     float a = dot(r.direction(), r.direction());
     float b = dot(r.direction(), ac);

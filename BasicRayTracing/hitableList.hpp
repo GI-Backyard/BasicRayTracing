@@ -11,17 +11,17 @@
 #include <vector>
 #include "hitable.h"
 
-class hitableList : public hitable {
+class HitableList : public Hitable {
 private:
-    std::vector<hitable*> hitables;
+    std::vector<Hitable*> hitables;
     
 public:
-    hitableList() {};
-    ~hitableList();
+    HitableList() {};
+    ~HitableList();
     
-    void addHitable(hitable* a);
+    void addHitable(Hitable* a);
     
-    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) const override;
+    virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
 };
 
 #endif /* hitableList_hpp */

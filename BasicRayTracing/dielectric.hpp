@@ -10,12 +10,12 @@
 #define dielectric_hpp
 #include "material.h"
 
-class dielectric : public material {
+class Dielectric : public Material {
 private:
     float refactIndex;
 public:
-    dielectric(float ri) { refactIndex = ri; }
-    virtual bool scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const override;
+    Dielectric(float ri) { refactIndex = ri; }
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
 };
 
 #endif /* dielectric_hpp */

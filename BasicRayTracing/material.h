@@ -11,32 +11,32 @@
 #include "ray.hpp"
 #include "hitable.h"
 
-class material {
+class Material {
 public:
-    virtual ~material() {}
-    virtual bool scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const = 0;
+    virtual ~Material() {}
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const = 0;
     
-    static inline vec3 randomInUnitSphere();
-    static inline vec3 reflect(const vec3& in, const vec3& normal);
-    static inline bool refract(const vec3& vIn, const vec3& n, float niOverNt, vec3& refracted);
+    static inline Vec3 randomInUnitSphere();
+    static inline Vec3 reflect(const Vec3& in, const Vec3& normal);
+    static inline bool refract(const Vec3& vIn, const Vec3& n, float niOverNt, Vec3& refracted);
     static inline float schlick(float cosine, float refIdx);
 };
 
-inline vec3 material::randomInUnitSphere(){
-    vec3 p;
+inline Vec3 Material::randomInUnitSphere(){
+    Vec3 p;
     do {
-        p = 2 * vec3(drand48(), drand48(), drand48()) - vec3(1, 1, 1);
+        p = 2 * Vec3(drand48(), drand48(), drand48()) - Vec3(1, 1, 1);
     } while(p.squareLength() >= 1.0);
     
     return p;
 }
 
-inline vec3 material::reflect(const vec3& in, const vec3& normal) {
+inline Vec3 Material::reflect(const Vec3& in, const Vec3& normal) {
     return in + 2 * dot((-normal), in) * normal;
 }
 
-inline bool material::refract(const vec3& vIn, const vec3& n, float niOverNt, vec3& refracted) {
-    vec3 uv = getUnitVector(vIn);
+inline bool Material::refract(const Vec3& vIn, const Vec3& n, float niOverNt, Vec3& refracted) {
+    Vec3 uv = getUnitVector(vIn);
     float dt = dot(uv, n);
     float discriminant = 1.0 - niOverNt*niOverNt*(1-dt*dt);
     if (discriminant > 0) {
@@ -47,7 +47,7 @@ inline bool material::refract(const vec3& vIn, const vec3& n, float niOverNt, ve
         return false;
 }
 
-inline float material::schlick(float cosine, float refIdx) {
+inline float Material::schlick(float cosine, float refIdx) {
     float r0 = (1 - refIdx) / ( 1 + refIdx);
     r0 = r0 * r0;
     return r0 + (1 - r0) * pow((1- cosine), 5);

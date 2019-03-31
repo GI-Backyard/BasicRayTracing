@@ -8,12 +8,12 @@
 
 #include "metal.hpp"
 
-bool metal::scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const {
+bool Metal::scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const {
     
     atten = albedo;
-    vec3 ori = rec.p;
-    vec3 dir = reflect(rIn.direction(), rec.normal) + fuzzy * randomInUnitSphere();
-    scatted = ray(ori, dir);
+    Vec3 ori = rec.p;
+    Vec3 dir = reflect(rIn.direction(), rec.normal) + fuzzy * randomInUnitSphere();
+    scatted = Ray(ori, dir);
     return dot(dir, rec.normal) > 0;
 }
 

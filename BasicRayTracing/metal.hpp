@@ -11,19 +11,19 @@
 
 #include "material.h"
 
-class metal : public material {
+class Metal : public Material {
 private:
-    vec3 albedo;
+    Vec3 albedo;
     float fuzzy;
 public:
-    metal(const vec3& color, float f = 0) {
+    Metal(const Vec3& color, float f = 0) {
         albedo = color;
         if(f > 1) fuzzy = 1;
         else if(f < 0) fuzzy = 0;
         else fuzzy = f;
     }
     
-    virtual bool scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const override;
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
 };
 
 #endif /* metal_hpp */

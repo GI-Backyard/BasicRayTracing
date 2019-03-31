@@ -9,18 +9,18 @@
 #ifndef hitable_h
 #define hitable_h
 #include "ray.hpp"
-class material;
-struct hitRecord {
+class Material;
+struct HitRecord {
     float t;
-    vec3 p;
-    vec3 normal;
-    material* mtl;
+    Vec3 p;
+    Vec3 normal;
+    Material* mtl;
 };
 
-class hitable {
+class Hitable {
 public:
-    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) const = 0;
-    virtual ~hitable() {}
+    virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const = 0;
+    virtual ~Hitable() {}
 };
 
 #endif /* hitable_h */

@@ -8,19 +8,19 @@
 
 #include "hitableList.hpp"
 
-hitableList::~hitableList() {
+HitableList::~HitableList() {
     for(const auto& i : hitables) {
         delete i;
     }
 }
 
-void hitableList::addHitable(hitable* a) {
+void HitableList::addHitable(Hitable* a) {
     hitables.push_back(a);
 }
 
-bool hitableList::hit(const ray& r, float tMin, float tMax, hitRecord& rec) const {
+bool HitableList::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const {
     bool hited = false;
-    hitRecord tmp;
+    HitRecord tmp;
     float currentTMax = tMax;
     for(const auto& ele : hitables) {
         if(ele->hit(r, tMin, currentTMax, tmp)) {

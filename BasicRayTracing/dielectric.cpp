@@ -8,13 +8,13 @@
 
 #include "dielectric.hpp"
 
-bool dielectric::scatter(const ray& r_in, const hitRecord& rec, vec3& attenuation, ray& scattered) const {
-    vec3 outward_normal;
+bool Dielectric::scatter(const Ray& r_in, const HitRecord& rec, Vec3& attenuation, Ray& scattered) const {
+    Vec3 outward_normal;
     float ref_idx = refactIndex;
-    vec3 reflected = reflect(r_in.direction(), rec.normal);
+    Vec3 reflected = reflect(r_in.direction(), rec.normal);
     float ni_over_nt;
-    attenuation = vec3(1.0, 1.0, 1.0);
-    vec3 refracted;
+    attenuation = Vec3(1.0, 1.0, 1.0);
+    Vec3 refracted;
     float reflect_prob;
     float cosine;
     if (dot(r_in.direction(), rec.normal) > 0) {
@@ -34,9 +34,9 @@ bool dielectric::scatter(const ray& r_in, const hitRecord& rec, vec3& attenuatio
     else
         reflect_prob = 1.0;
     if (drand48() < reflect_prob)
-        scattered = ray(rec.p, reflected);
+        scattered = Ray(rec.p, reflected);
     else
-        scattered = ray(rec.p, refracted);
+        scattered = Ray(rec.p, refracted);
     return true;
 }
 

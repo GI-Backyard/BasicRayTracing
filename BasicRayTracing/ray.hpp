@@ -3,23 +3,27 @@
 #define ray_hpp
 
 #include "vec3.hpp"
-class ray {
+class Ray {
 public:
-    vec3 ori;
-    vec3 dir;
+    Vec3 ori;
+    Vec3 dir;
+    float _time;
 public:
-    ray() {
-        ori = vec3(0 ,0 ,0); dir = vec3(0 ,0 , -1);
+    float time() const { return _time; }
+    Ray() {
+        ori = Vec3(0 ,0 ,0); dir = Vec3(0 ,0 , -1);
+        _time = 0.0f;
     }
     
-    ray(const vec3& a, const vec3& b) {
+    Ray(const Vec3& a, const Vec3& b, float ti = 0.0f) {
         ori = a; dir = b;
+        _time = ti;
     }
     
-    const vec3& origin() const { return ori; }
-    const vec3& direction() const { return dir; }
+    const Vec3& origin() const { return ori; }
+    const Vec3& direction() const { return dir; }
     
-    vec3 getPoint(float t) const { return ori + dir * t; }
+    Vec3 getPoint(float t) const { return ori + dir * t; }
 };
 
 #endif /* ray_hpp */

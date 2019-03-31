@@ -12,27 +12,32 @@
 #include "ray.hpp"
 #include <math.h>
 
-inline vec3 randomInUnitDisk() {
-    vec3 p;
+inline Vec3 randomInUnitDisk() {
+    Vec3 p;
     do {
-        p = 2.0 * vec3(drand48(), drand48(), 0) - vec3(1, 1, 0);
+        p = 2.0 * Vec3(drand48(), drand48(), 0) - Vec3(1, 1, 0);
     } while(dot(p, p) >= 1);
     return p;
 }
 
-class camera {
+class Camera {
 private:
-    vec3 origin;
-    vec3 lowLeftCorner;
-    vec3 horizontal;
-    vec3 vertical;
-    vec3 u;
-    vec3 v;
-    vec3 w;
+    Vec3 origin;
+    Vec3 lowLeftCorner;
+    Vec3 horizontal;
+    Vec3 vertical;
+    Vec3 u;
+    Vec3 v;
+    Vec3 w;
     float lenghRadius;
+    float time0;
+    float time1;
 public:
     
-    camera(const vec3& eye, const vec3& focus, const vec3& up,float fov, float aspect, float aperture = 0, float focusDist = 1) {
+    Camera(const Vec3& eye, const Vec3& focus, const Vec3& up,float fov, float aspect, float aperture,
+           float focusDist, float t0, float t1) {
+        time0 = t0;
+        time1 = t1;
         lenghRadius = aperture / 2;
         w = getUnitVector(eye - focus);
         u = getUnitVector(cross(up, w));
@@ -48,10 +53,11 @@ public:
         
     }
     
-    ray getRay(float s, float t) {
-        vec3 rd = lenghRadius * randomInUnitDisk();
-        vec3 offset = u * rd.x() + v * rd.y();
-        return ray(origin + offset, lowLeftCorner + s * horizontal + t * vertical - origin - offset);
+    Ray getRay(float s, float t) {
+        Vec3 rd = lenghRadius * randomInUnitDisk();
+        Vec3 offset = u * rd.x() + v * rd.y();
+        float time  = time0 + drand48() * (time1 - time0);
+        return Ray(origin + offset, lowLeftCorner + s * horizontal + t * vertical - origin - offset, time);
     }
 };
 

@@ -8,16 +8,16 @@
 
 #include "lambert.hpp"
 
-lambert::lambert(const vec3& col)
+Lambert::Lambert(const Vec3& col)
 {
     albedo = col;
 }
 
-bool lambert::scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const {
+bool Lambert::scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const {
     
     atten = albedo;
-    vec3 ori = rec.p;
-    vec3 dir = rec.normal + randomInUnitSphere();
-    scatted = ray(ori, dir);
+    Vec3 ori = rec.p;
+    Vec3 dir = rec.normal + randomInUnitSphere();
+    scatted = Ray(ori, dir);
     return true;
 }

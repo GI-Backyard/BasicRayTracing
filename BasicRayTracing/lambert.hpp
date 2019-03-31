@@ -11,12 +11,12 @@
 
 #include "material.h"
 
-class lambert : public material {
+class Lambert : public Material {
 private:
-    vec3 albedo;
+    Vec3 albedo;
 public:
-    lambert(const vec3& col);
-    virtual bool scatter(const ray& rIn, const hitRecord& rec, vec3& atten, ray& scatted) const override;
+    Lambert(const Vec3& col);
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
 };
 
 #endif /* lambert_hpp */

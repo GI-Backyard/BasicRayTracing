@@ -11,17 +11,17 @@
 #include "vec3.hpp"
 #include "hitable.h"
 
-class sphere : public hitable {
+class Sphere : public Hitable {
 private:
-    vec3 center;
+    Vec3 center;
     float radius;
-    material* mtl;
+    Material* mtl;
 public:
-    sphere() { center = vec3(0, 0, 0); radius = 1.0; mtl = nullptr; }
-    ~sphere();
-    sphere(const vec3& c, float r, material* mtl) { center = c; radius = r; this->mtl = mtl; }
+    Sphere() { center = Vec3(0, 0, 0); radius = 1.0; mtl = nullptr; }
+    ~Sphere();
+    Sphere(const Vec3& c, float r, Material* mtl) { center = c; radius = r; this->mtl = mtl; }
     
-    virtual bool hit(const ray& r, float tMin, float tMax, hitRecord& rec) const override;
+    virtual bool hit(const Ray& r, float tMin, float tMax, HitRecord& rec) const override;
     
 };
 
