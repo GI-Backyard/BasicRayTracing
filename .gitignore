@@ -33,5 +33,5 @@
 
 # MacOS
 .DS_Store
-result.ppm
+*.ppm
 xcuserdata
