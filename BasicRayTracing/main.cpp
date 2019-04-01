@@ -14,19 +14,24 @@ const int numberOfSamples = 100;
 
 Vec3 getColorForRay(const Ray& r, const Hitable& world, int depth) {
     HitRecord rec;
-    if(depth <  maxDepth && world.hit(r, 0.001, MAXFLOAT, rec)) {
+    if(world.hit(r, 0.001, MAXFLOAT, rec)) {
         Vec3 atten;
         Ray scatted;
-        if(rec.mtl->scatter(r, rec, atten, scatted)) {
-            return atten * getColorForRay(scatted, world, depth + 1);
+        Vec3 emitted = rec.mtl->emitted(rec.u, rec.v, rec.p);
+        if(depth <  maxDepth && rec.mtl->scatter(r, rec, atten, scatted)) {
+            return emitted + atten * getColorForRay(scatted, world, depth + 1);
+        } else {
+            return emitted;
         }
         //return (rec.normal + vec3(1, 1, 1)) / 2;
     }
-    Vec3 unitDir = getUnitVector(r.direction());
-    float blend = 0.5 * (unitDir.y() + 1.0);
-    Vec3 white(1, 1, 1);
-    Vec3 blue(0.5 * 0.5, 0.7 * 0.7, 1.0);
-    return white * (1.0 - blend) + blue * blend;
+    
+    return Vec3(0, 0, 0);
+//    Vec3 unitDir = getUnitVector(r.direction());
+//    float blend = 0.5 * (unitDir.y() + 1.0);
+//    Vec3 white(1, 1, 1);
+//    Vec3 blue(0.5 * 0.5, 0.7 * 0.7, 1.0);
+//    return white * (1.0 - blend) + blue * blend;
 }
 
 Hitable* random_scene() {
@@ -82,6 +87,17 @@ Hitable* random_scene() {
     
 }
 
+Hitable* simpleLight() {
+    Texture* perlinTex = new NoiseTexture(4);
+    Texture* constTex = new ConstantTexture(Vec3(4, 4, 4));
+    HitableList* world = new HitableList();
+    world->addHitable(new Sphere(Vec3(0, -1000, 0), 1000, new Lambert(perlinTex)));
+    world->addHitable(new Sphere(Vec3(0, 2, 0), 2, new Lambert(perlinTex)));
+    world->addHitable(new Sphere(Vec3(0, 7, 0), 2, new DiffuseLight(constTex)));
+    world->addHitable(new RectXY(3, 5, 1, 3, -2, new DiffuseLight(constTex)));
+    return world;
+}
+
 Hitable* twoPerlinSpheres() {
     Texture* perTex = new NoiseTexture(4);
     HitableList* world = new HitableList();
@@ -102,9 +118,9 @@ Hitable* staticScene() {
 }
 int main(int argc, const char * argv[]) {
 
-    Hitable* pWorld = twoPerlinSpheres();
-    int nx = 300;
-    int ny = 200;
+    Hitable* pWorld = simpleLight();
+    int nx = 450;
+    int ny = 300;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
     Vec3 eye(13, 2, 3);
     Vec3 focus(0, 0, 0);

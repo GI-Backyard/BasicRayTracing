@@ -16,6 +16,9 @@ class Material {
 public:
     virtual ~Material() {}
     virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const = 0;
+    virtual Vec3 emitted(float u, float v, const Vec3& p) const {
+        return Vec3(0, 0, 0);
+    }
     
     static inline Vec3 randomInUnitSphere();
     static inline Vec3 reflect(const Vec3& in, const Vec3& normal);
@@ -53,6 +56,25 @@ public:
     }
     
     virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
+};
+
+class DiffuseLight : public Material {
+public:
+    Texture* emit;
+public:
+    DiffuseLight(Texture* tex) {
+        emit = tex;
+    }
+    
+    ~DiffuseLight() {
+        delete emit;
+    }
+    
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const { return false; }
+    virtual Vec3 emitted(float u, float v, const Vec3& p) const {
+        return emit->value(u, v, p);
+    }
+    
 };
 
 #endif /* material_h */

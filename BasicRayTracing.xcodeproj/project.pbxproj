@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B2E8777E22520B0200FA4039 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E8777D22520B0200FA4039 /* material.cpp */; };
+		B2E877812252298E00FA4039 /* hitable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E8777F2252298E00FA4039 /* hitable.cpp */; };
 		B2EFDD06224BCC29004DA25E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD05224BCC29004DA25E /* main.cpp */; };
 		B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD0D224BD0FE004DA25E /* vec3.cpp */; };
 		B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD10224BDE8C004DA25E /* ray.cpp */; };
@@ -35,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		B2E8777D22520B0200FA4039 /* material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
+		B2E8777F2252298E00FA4039 /* hitable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hitable.cpp; sourceTree = "<group>"; };
+		B2E877802252298E00FA4039 /* hitable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hitable.hpp; sourceTree = "<group>"; };
 		B2EFDD02224BCC29004DA25E /* BasicRayTracing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BasicRayTracing; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2EFDD05224BCC29004DA25E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B2EFDD0D224BD0FE004DA25E /* vec3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vec3.cpp; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				B2EFDD4F2251C4AC004DA25E /* perlin.cpp */,
 				B2EFDD502251C4AC004DA25E /* perlin.hpp */,
 				B2E8777D22520B0200FA4039 /* material.cpp */,
+				B2E8777F2252298E00FA4039 /* hitable.cpp */,
+				B2E877802252298E00FA4039 /* hitable.hpp */,
 			);
 			path = BasicRayTracing;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				B2E8777E22520B0200FA4039 /* material.cpp in Sources */,
 				B2EFDD19224CCDB3004DA25E /* hitableList.cpp in Sources */,
 				B2EFDD452250CC53004DA25E /* movingSphere.cpp in Sources */,
+				B2E877812252298E00FA4039 /* hitable.cpp in Sources */,
 				B2EFDD1C224CE789004DA25E /* camera.cpp in Sources */,
 				B2EFDD06224BCC29004DA25E /* main.cpp in Sources */,
 			);

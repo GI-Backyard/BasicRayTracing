@@ -40,6 +40,9 @@ bool MovingSphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) con
         rec.p = r.getPoint(t1);
         rec.normal = (rec.p - center) / radius;
         rec.mtl = this->mtl;
+        rec.obj = this;
+        rec.u = 0;
+        rec.v = 0;
         return true;
     }
     float t2 = (- b + sqrt(discriminant))/ a;
@@ -48,6 +51,9 @@ bool MovingSphere::hit(const Ray& r, float tMin, float tMax, HitRecord& rec) con
         rec.p = r.getPoint(t2);
         rec.normal = (rec.p - center) / radius;
         rec.mtl = this->mtl;
+        rec.obj = this;
+        rec.u = 0;
+        rec.v = 0;
         return true;
     }
     
