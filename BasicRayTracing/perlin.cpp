@@ -48,15 +48,20 @@ std::vector<int> Perlin::perlinGenPerm() {
 }
 
 float Perlin::noise(const Vec3& p) const {
-//    float u = p.x() - floor(p.x());
-//    float v = p.y() - floor(p.y());
-//    float w = p.z() - floor(p.z());
-    int i = int(4 * p.x()) & 255;
-    int j = int(4 * p.y()) & 255;
-    int k = int(4 * p.z()) & 255;
-//    for(int di = 0; di < 2; ++di)
-//        for(int dj = 0; dj < 2; ++dj)
-//            for(int dk = 0; dk < 2; ++dk)
-//                i;
-    return ranFloat[permX[i] ^ permY[j] ^ permZ[k]];
+    float u = p.x() - floor(p.x());
+    float v = p.y() - floor(p.y());
+    float w = p.z() - floor(p.z());
+    u = u * u *(3 - 2* u);
+    v = v * v *(3 - 2* v);
+    w = w * w *(3 - 2* w);
+    int i = floor(p.x());
+    int j = floor(p.y());
+    int k = floor(p.z());
+    float c[2][2][2];
+    for(int di = 0; di < 2; ++di)
+        for(int dj = 0; dj < 2; ++dj)
+            for(int dk = 0; dk < 2; ++dk)
+                c[di][dj][dk] = ranFloat[permX[(i + di) & 255] ^ permY[(j + dj) & 255] ^ permZ[(k + dk) & 255]];
+    return trilinearInterP(c, u, v, w);
+    //return ranFloat[permX[i]^permY[j]^permZ[k]];
 }

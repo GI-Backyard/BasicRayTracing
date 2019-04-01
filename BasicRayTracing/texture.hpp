@@ -38,7 +38,9 @@ public:
 class NoiseTexture : public Texture {
 private:
     Perlin noise;
+    float scale;
 public:
+    NoiseTexture(float s);
     virtual Vec3 value(float u, float v, const Vec3& p) const override;
 };
 #endif /* texture_h */

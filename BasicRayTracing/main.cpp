@@ -86,7 +86,7 @@ Hitable* random_scene() {
 }
 
 Hitable* twoPerlinSpheres() {
-    Texture* perTex = new NoiseTexture();
+    Texture* perTex = new NoiseTexture(4);
     HitableList* world = new HitableList();
     world->addHitable(new Sphere(Vec3(0, -1000, 0), 1000, new Lambert(perTex)));
     world->addHitable(new Sphere(Vec3(0, 2, 0), 2, new Lambert(perTex)));
@@ -106,8 +106,8 @@ Hitable* staticScene() {
 int main(int argc, const char * argv[]) {
 
     Hitable* pWorld = twoPerlinSpheres();
-    int nx = 600;
-    int ny = 400;
+    int nx = 300;
+    int ny = 200;
     std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
     Vec3 eye(13, 2, 3);
     Vec3 focus(0, 0, 0);
