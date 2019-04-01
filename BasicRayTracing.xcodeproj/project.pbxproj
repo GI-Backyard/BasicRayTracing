@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2E8777E22520B0200FA4039 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E8777D22520B0200FA4039 /* material.cpp */; };
 		B2EFDD06224BCC29004DA25E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD05224BCC29004DA25E /* main.cpp */; };
 		B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD0D224BD0FE004DA25E /* vec3.cpp */; };
 		B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD10224BDE8C004DA25E /* ray.cpp */; };
 		B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD14224CC9D9004DA25E /* sphere.cpp */; };
 		B2EFDD19224CCDB3004DA25E /* hitableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD17224CCDB3004DA25E /* hitableList.cpp */; };
 		B2EFDD1C224CE789004DA25E /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD1A224CE789004DA25E /* camera.cpp */; };
-		B2EFDD20224D0591004DA25E /* lambert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD1E224D0591004DA25E /* lambert.cpp */; };
-		B2EFDD23224D19FF004DA25E /* metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD21224D19FF004DA25E /* metal.cpp */; };
-		B2EFDD26224D282B004DA25E /* dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD24224D282B004DA25E /* dielectric.cpp */; };
 		B2EFDD452250CC53004DA25E /* movingSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD432250CC53004DA25E /* movingSphere.cpp */; };
 		B2EFDD482250EB40004DA25E /* aabb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD462250EB40004DA25E /* aabb.cpp */; };
 		B2EFDD4B2250F0F1004DA25E /* bvhNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2EFDD492250F0F1004DA25E /* bvhNode.cpp */; };
@@ -36,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B2E8777D22520B0200FA4039 /* material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
 		B2EFDD02224BCC29004DA25E /* BasicRayTracing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BasicRayTracing; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2EFDD05224BCC29004DA25E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B2EFDD0D224BD0FE004DA25E /* vec3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vec3.cpp; sourceTree = "<group>"; };
@@ -50,12 +49,6 @@
 		B2EFDD1A224CE789004DA25E /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		B2EFDD1B224CE789004DA25E /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B2EFDD1D224D04D7004DA25E /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
-		B2EFDD1E224D0591004DA25E /* lambert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lambert.cpp; sourceTree = "<group>"; };
-		B2EFDD1F224D0591004DA25E /* lambert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lambert.hpp; sourceTree = "<group>"; };
-		B2EFDD21224D19FF004DA25E /* metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = metal.cpp; sourceTree = "<group>"; };
-		B2EFDD22224D19FF004DA25E /* metal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = metal.hpp; sourceTree = "<group>"; };
-		B2EFDD24224D282B004DA25E /* dielectric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dielectric.cpp; sourceTree = "<group>"; };
-		B2EFDD25224D282B004DA25E /* dielectric.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dielectric.hpp; sourceTree = "<group>"; };
 		B2EFDD432250CC53004DA25E /* movingSphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movingSphere.cpp; sourceTree = "<group>"; };
 		B2EFDD442250CC53004DA25E /* movingSphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movingSphere.hpp; sourceTree = "<group>"; };
 		B2EFDD462250EB40004DA25E /* aabb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aabb.cpp; sourceTree = "<group>"; };
@@ -111,12 +104,6 @@
 				B2EFDD1A224CE789004DA25E /* camera.cpp */,
 				B2EFDD1B224CE789004DA25E /* camera.hpp */,
 				B2EFDD1D224D04D7004DA25E /* material.h */,
-				B2EFDD1E224D0591004DA25E /* lambert.cpp */,
-				B2EFDD1F224D0591004DA25E /* lambert.hpp */,
-				B2EFDD21224D19FF004DA25E /* metal.cpp */,
-				B2EFDD22224D19FF004DA25E /* metal.hpp */,
-				B2EFDD24224D282B004DA25E /* dielectric.cpp */,
-				B2EFDD25224D282B004DA25E /* dielectric.hpp */,
 				B2EFDD432250CC53004DA25E /* movingSphere.cpp */,
 				B2EFDD442250CC53004DA25E /* movingSphere.hpp */,
 				B2EFDD462250EB40004DA25E /* aabb.cpp */,
@@ -127,6 +114,7 @@
 				B2EFDD4D2251B9AE004DA25E /* texture.cpp */,
 				B2EFDD4F2251C4AC004DA25E /* perlin.cpp */,
 				B2EFDD502251C4AC004DA25E /* perlin.hpp */,
+				B2E8777D22520B0200FA4039 /* material.cpp */,
 			);
 			path = BasicRayTracing;
 			sourceTree = "<group>";
@@ -188,17 +176,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2EFDD12224BDE8C004DA25E /* ray.cpp in Sources */,
-				B2EFDD20224D0591004DA25E /* lambert.cpp in Sources */,
 				B2EFDD482250EB40004DA25E /* aabb.cpp in Sources */,
 				B2EFDD4E2251B9AE004DA25E /* texture.cpp in Sources */,
-				B2EFDD26224D282B004DA25E /* dielectric.cpp in Sources */,
 				B2EFDD0F224BD0FE004DA25E /* vec3.cpp in Sources */,
 				B2EFDD16224CC9D9004DA25E /* sphere.cpp in Sources */,
 				B2EFDD512251C4AC004DA25E /* perlin.cpp in Sources */,
 				B2EFDD4B2250F0F1004DA25E /* bvhNode.cpp in Sources */,
+				B2E8777E22520B0200FA4039 /* material.cpp in Sources */,
 				B2EFDD19224CCDB3004DA25E /* hitableList.cpp in Sources */,
 				B2EFDD452250CC53004DA25E /* movingSphere.cpp in Sources */,
-				B2EFDD23224D19FF004DA25E /* metal.cpp in Sources */,
 				B2EFDD1C224CE789004DA25E /* camera.cpp in Sources */,
 				B2EFDD06224BCC29004DA25E /* main.cpp in Sources */,
 			);

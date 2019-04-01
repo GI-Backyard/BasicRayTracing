@@ -10,6 +10,7 @@
 #define material_h
 #include "ray.hpp"
 #include "hitable.h"
+#include "texture.hpp"
 
 class Material {
 public:
@@ -22,35 +23,36 @@ public:
     static inline float schlick(float cosine, float refIdx);
 };
 
-inline Vec3 Material::randomInUnitSphere(){
-    Vec3 p;
-    do {
-        p = 2 * Vec3(drand48(), drand48(), drand48()) - Vec3(1, 1, 1);
-    } while(p.squareLength() >= 1.0);
-    
-    return p;
-}
+class Lambert : public Material {
+private:
+    const Texture* texture;
+public:
+    ~Lambert();
+    Lambert(const Texture* tex);
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
+};
 
-inline Vec3 Material::reflect(const Vec3& in, const Vec3& normal) {
-    return in + 2 * dot((-normal), in) * normal;
-}
+class Dielectric : public Material {
+private:
+    float refactIndex;
+public:
+    Dielectric(float ri) { refactIndex = ri; }
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
+};
 
-inline bool Material::refract(const Vec3& vIn, const Vec3& n, float niOverNt, Vec3& refracted) {
-    Vec3 uv = getUnitVector(vIn);
-    float dt = dot(uv, n);
-    float discriminant = 1.0 - niOverNt*niOverNt*(1-dt*dt);
-    if (discriminant > 0) {
-        refracted = niOverNt*(uv - n*dt) - n*sqrt(discriminant);
-        return true;
+class Metal : public Material {
+private:
+    Vec3 albedo;
+    float fuzzy;
+public:
+    Metal(const Vec3& color, float f = 0) {
+        albedo = color;
+        if(f > 1) fuzzy = 1;
+        else if(f < 0) fuzzy = 0;
+        else fuzzy = f;
     }
-    else
-        return false;
-}
-
-inline float Material::schlick(float cosine, float refIdx) {
-    float r0 = (1 - refIdx) / ( 1 + refIdx);
-    r0 = r0 * r0;
-    return r0 + (1 - r0) * pow((1- cosine), 5);
-}
+    
+    virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
+};
 
 #endif /* material_h */

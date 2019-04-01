@@ -6,9 +6,6 @@
 #include "movingSphere.hpp"
 #include "hitableList.hpp"
 #include "camera.hpp"
-#include "lambert.hpp"
-#include "metal.hpp"
-#include "dielectric.hpp"
 #include "bvhNode.hpp"
 #include "texture.hpp"
 
