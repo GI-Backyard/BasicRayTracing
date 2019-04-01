@@ -37,5 +37,6 @@ NoiseTexture::NoiseTexture(float s) {
     scale = s;
 }
 Vec3 NoiseTexture::value(float u, float v, const Vec3& p) const {
-    return Vec3(1, 1, 1) * noise.noise(scale * p);
+//    return Vec3(1, 1, 1) * noise.turb(scale * p);
+    return Vec3(1, 1, 1) * 0.5 * (1 + sin(scale * p.z() + 10 * noise.turb(p)));
 }
