@@ -1,7 +1,7 @@
 #include <iostream>
 #include "vec3.hpp"
 #include "ray.hpp"
-#include "hitable.h"
+#include "hitable.hpp"
 #include "sphere.hpp"
 #include "movingSphere.hpp"
 #include "hitableList.hpp"
@@ -87,6 +87,21 @@ Hitable* random_scene() {
     
 }
 
+Hitable* cornellBox() {
+    HitableList* world = new HitableList();
+    Material* red = new Lambert(new ConstantTexture(Vec3(0.65, 0.05, 0.05)));
+    Material* white = new Lambert(new ConstantTexture(Vec3(0.73, 0.73, 0.73)));
+    Material* green = new Lambert(new ConstantTexture(Vec3(0.12, 0.45, 0.15)));
+    Material* light = new DiffuseLight(new ConstantTexture(Vec3(15, 15, 15)));
+    world->addHitable(new FlipNormal(new RectYZ(0, 555, 0, 555, 555, green)));
+    world->addHitable(new RectYZ(0, 555, 0, 555, 0, red));
+    world->addHitable(new RectXZ(213, 343, 227, 332, 554, light));
+    world->addHitable(new FlipNormal(new RectXZ(0, 555, 0, 555, 555, white)));
+    world->addHitable(new RectXZ(0, 555, 0, 555, 0, white));
+    world->addHitable(new FlipNormal(new RectXY(0, 555, 0, 555, 555, white)));
+    return world;
+}
+
 Hitable* simpleLight() {
     Texture* perlinTex = new NoiseTexture(4);
     Texture* constTex = new ConstantTexture(Vec3(4, 4, 4));
@@ -116,17 +131,32 @@ Hitable* staticScene() {
     pWorld->addHitable(new Sphere(Vec3(-1, 0, -1), -0.2, new Dielectric(1.5)));
     return pWorld;
 }
-int main(int argc, const char * argv[]) {
 
-    Hitable* pWorld = simpleLight();
-    int nx = 450;
-    int ny = 300;
-    std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
+Camera basicCamera(int nx, int ny) {
     Vec3 eye(13, 2, 3);
     Vec3 focus(0, 0, 0);
     float focusDist = 10;
     float aperture = 0.0;
-    Camera cam(eye, focus, Vec3(0, 1, 0), 40, float(nx)/ny, aperture, focusDist, 0.0f, 0.2f);
+    return Camera(eye, focus, Vec3(0, 1, 0), 40, float(nx)/ny, aperture, focusDist, 0.0f, 0.2f);
+}
+
+Camera cornellCamera(int nx, int ny) {
+    Vec3 eye(278, 278, -800);
+    Vec3 focus(278, 278, 0);
+    float focusDist = 10;
+    float aperture = 0.0;
+    return Camera(eye, focus, Vec3(0, 1, 0), 40, float(nx)/ny, aperture, focusDist, 0.0f, 0.2f);
+}
+
+int main(int argc, const char * argv[]) {
+
+    Hitable* pWorld = simpleLight();
+    pWorld = cornellBox();
+    int nx = 900;
+    int ny = 600;
+    std::cout<<"P3\n"<< nx << " "<< ny << "\n255\n";
+    Camera cam = basicCamera(nx, ny);
+    cam = cornellCamera(nx, ny);
     for (int j = ny - 1 ; j >= 0; --j) {
         for(int i = 0; i < nx; ++i) {
             Vec3 color(0, 0, 0);

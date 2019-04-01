@@ -9,7 +9,7 @@
 #ifndef sphere_hpp
 #define sphere_hpp
 #include "vec3.hpp"
-#include "hitable.h"
+#include "hitable.hpp"
 
 class Sphere : public Hitable {
 private:

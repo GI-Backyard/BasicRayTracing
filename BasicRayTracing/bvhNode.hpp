@@ -9,7 +9,7 @@
 #ifndef bvhNode_hpp
 #define bvhNode_hpp
 
-#include "hitable.h"
+#include "hitable.hpp"
 #include <vector>
 
 class BVHNode : public Hitable {

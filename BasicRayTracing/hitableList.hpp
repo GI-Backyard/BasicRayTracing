@@ -9,7 +9,7 @@
 #ifndef hitableList_hpp
 #define hitableList_hpp
 #include <vector>
-#include "hitable.h"
+#include "hitable.hpp"
 
 class HitableList : public Hitable {
 public:

@@ -9,7 +9,7 @@
 #ifndef material_h
 #define material_h
 #include "ray.hpp"
-#include "hitable.h"
+#include "hitable.hpp"
 #include "texture.hpp"
 
 class Material {

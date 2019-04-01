@@ -9,7 +9,7 @@
 #ifndef movingSphere_hpp
 #define movingSphere_hpp
 
-#include "hitable.h"
+#include "hitable.hpp"
 #include "material.h"
 
 class MovingSphere : public Hitable{
