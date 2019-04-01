@@ -10,12 +10,14 @@
 #define lambert_hpp
 
 #include "material.h"
+#include "texture.hpp"
 
 class Lambert : public Material {
 private:
-    Vec3 albedo;
+    const Texture* texture;
 public:
-    Lambert(const Vec3& col);
+    ~Lambert();
+    Lambert(const Texture* tex);
     virtual bool scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const override;
 };
 

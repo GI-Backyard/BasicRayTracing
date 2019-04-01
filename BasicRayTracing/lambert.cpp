@@ -8,14 +8,18 @@
 
 #include "lambert.hpp"
 
-Lambert::Lambert(const Vec3& col)
+Lambert::Lambert(const Texture* tex)
 {
-    albedo = col;
+    texture = tex;
+}
+
+Lambert::~Lambert() {
+    delete texture;
 }
 
 bool Lambert::scatter(const Ray& rIn, const HitRecord& rec, Vec3& atten, Ray& scatted) const {
     
-    atten = albedo;
+    atten = texture->value(0, 0, rec.p);
     Vec3 ori = rec.p;
     Vec3 dir = rec.normal + randomInUnitSphere();
     scatted = Ray(ori, dir, rIn.time());

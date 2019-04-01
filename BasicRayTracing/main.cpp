@@ -10,6 +10,7 @@
 #include "metal.hpp"
 #include "dielectric.hpp"
 #include "bvhNode.hpp"
+#include "texture.hpp"
 
 const int maxDepth = 10;
 const int numberOfSamples = 100;
@@ -34,7 +35,9 @@ Vec3 getColorForRay(const Ray& r, const Hitable& world, int depth) {
 Hitable* random_scene() {
     int n = 500;
     Hitable **list = new Hitable*[n+1];
-    list[0] =  new Sphere(Vec3(0,-1000,0), 1000, new Lambert(Vec3(0.5, 0.5, 0.5)));
+    Texture* p1 = new ConstantTexture(Vec3(0.5, 0.5, 0.5));
+    Texture* p2 = new ConstantTexture(Vec3(0.8, 0.8, 0.8));
+    list[0] =  new Sphere(Vec3(0,-1000,0), 1000, new Lambert(new CheckerTexture(p1, p2)));
     int i = 1;
     const int repeat = 11;
     for (int a = -repeat; a < repeat; a++) {
@@ -43,7 +46,8 @@ Hitable* random_scene() {
             Vec3 center(a+0.9*drand48(),0.2,b+0.9*drand48());
             if ((center-Vec3(4,0.2,0)).length() > 0.9) {
                 if (choose_mat < 0.8) {  // diffuse
-                    list[i++] = new Sphere(center, 0.2, new Lambert(Vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48())));
+                    Vec3 color(drand48()*drand48(), drand48()*drand48(), drand48()*drand48());
+                    list[i++] = new Sphere(center, 0.2, new Lambert(new ConstantTexture(color)));
                 }
                 else if (choose_mat < 0.95) { // metal
                     list[i++] = new Sphere(center, 0.2,
@@ -61,17 +65,19 @@ Hitable* random_scene() {
 //    list[i++] = new Sphere(Vec3(4, 1, 0), 1.0, new Metal(Vec3(0.7, 0.6, 0.5), 0.0));
 
     list[i++] = new MovingSphere(Vec3(0, 1, 0), Vec3(0, 1.2, 0), 0.0, 1.0, 1.0, new Dielectric(1.5));
-    list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambert(Vec3(0.4, 0.2, 0.1)));
+    Vec3 color(0.4, 0.2, 0.1);
+    list[i++] = new Sphere(Vec3(-4, 1, 0), 1.0, new Lambert(new ConstantTexture(color)));
     list[i++] = new Sphere(Vec3(4, 1, 0), 1.0, new Metal(Vec3(0.7, 0.6, 0.5), 0.0));
 
     HitableList* scene = new HitableList();
     for(int j = 0; j < i; ++j) {
         scene->addHitable(list[j]);
     }
-//#define USE_BVH
+#define USE_BVH
+
 #ifdef USE_BVH
     std::vector<Hitable*> sceneNodes = scene->hitables;
-    BVHNode* node = new BVHNode(&sceneNodes[0], sceneNodes.size(), 0.0, 1.0f);
+    BVHNode* node = new BVHNode(&sceneNodes[0], (int)sceneNodes.size(), 0.0, 1.0f);
     return node;
 #else
     return scene;
@@ -80,8 +86,9 @@ Hitable* random_scene() {
 }
 Hitable* staticScene() {
     HitableList* pWorld = new HitableList();
-    pWorld->addHitable(new Sphere(Vec3(0, 0, -1), 0.5, new Lambert(Vec3(0.1, 0.2, 0.5))));
-    pWorld->addHitable(new Sphere(Vec3(0, -100.5, -1), 100, new Lambert(Vec3(0.8, 0.8, 0.0))));
+    pWorld->addHitable(new Sphere(Vec3(0, 0, -1), 0.5, new Lambert(new ConstantTexture(Vec3(0.1, 0.2, 0.5)))));
+    Vec3 color(0.8, 0.8, 0.0);
+    pWorld->addHitable(new Sphere(Vec3(0, -100.5, -1), 100, new Lambert(new ConstantTexture(color))));
     pWorld->addHitable(new Sphere(Vec3(1, 0, -1), 0.5, new Metal(Vec3(0.8, 0.6, 0.2), 0.01)));
     pWorld->addHitable(new Sphere(Vec3(-1, 0, -1), 0.5, new Dielectric(1.5)));
     pWorld->addHitable(new Sphere(Vec3(-1, 0, -1), -0.2, new Dielectric(1.5)));
