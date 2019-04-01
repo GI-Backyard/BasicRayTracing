@@ -9,6 +9,7 @@
 #ifndef texture_h
 #define texture_h
 #include "vec3.hpp"
+#include "perlin.hpp"
 
 class Texture {
 public:
@@ -31,6 +32,13 @@ private:
 public:
     CheckerTexture(Texture* t0, Texture* t1);
     ~CheckerTexture();
+    virtual Vec3 value(float u, float v, const Vec3& p) const override;
+};
+
+class NoiseTexture : public Texture {
+private:
+    Perlin noise;
+public:
     virtual Vec3 value(float u, float v, const Vec3& p) const override;
 };
 #endif /* texture_h */

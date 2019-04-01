@@ -32,3 +32,7 @@ Vec3 CheckerTexture::value(float u, float v, const Vec3& p) const {
     if(sines > 0) return even->value(u, v, p);
     else return odd->value(u, v, p);
 }
+
+Vec3 NoiseTexture::value(float u, float v, const Vec3& p) const {
+    return Vec3(1, 1, 1) * noise.noise(p);
+}
